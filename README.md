@@ -32,12 +32,11 @@ The FileWatcher class monitors changes to a single file and signals when the fil
       textFormat: Text.MarkdownText
       text: reader.content
 
-  	  FileWatcher {
+      FileWatcher {
           filename: "C:/Dev/MarkdownViewer/README.md"
-  	      onChanged: reader.load(filename)
-  	  }
-      FileReader {
-	  id: reader }
+          onChanged: reader.load(filename)
+      }
+      FileReader { id: reader }
   }
   ```
 
