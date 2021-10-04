@@ -36,6 +36,11 @@ FileWatcher::FileWatcher(QObject *parent) :
     connect(this, &FileWatcher::filenameChanged, this, &FileWatcher::monitorFile);
 }
 
+void FileWatcher::setUrl(QUrl url)
+{
+    setFilename(url.toLocalFile());
+}
+
 void FileWatcher::validateFilename(const QString &filename)
 {
     QFileInfo fi(filename);

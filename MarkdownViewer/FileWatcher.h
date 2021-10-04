@@ -37,6 +37,9 @@ class FileWatcher : public QObject
 public:
     explicit FileWatcher(QObject *parent = nullptr);
 
+public slots:
+    void setUrl(QUrl url);
+
 signals:
     void changed(const QString& filename);
     void filenameChanged(const QString& filename);

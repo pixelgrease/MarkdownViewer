@@ -65,6 +65,14 @@ The FileReader class simplifies reading text files for QML.
 
 ## Changes
 
+2021-10-03 **Bug Fix and minor improvements**
+* Incorporates workaround for [QTBUG-97041 (text with backticks doesn't scale properly)](https://bugreports.qt.io/browse/QTBUG-97041) so that code scales correctly
+* Supports flicking the document to scroll
+* Increases width of scrollbar and no longer draw scrollbar over text
+* Handles dropped files on Linux
+* Handles dropped markdown text
+* Adds application icon
+
 2020-04-01 **Functionality Updates**
 * Loads file specified on command-line, enabling launching associated file type (ex.: *.md) using a file manager
 * Clicking link loads link in browser 

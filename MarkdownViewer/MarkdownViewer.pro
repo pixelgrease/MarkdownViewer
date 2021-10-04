@@ -1,4 +1,4 @@
-QT += quick
+QT += quick quickcontrols2
 
 CONFIG += c++11
 
@@ -34,3 +34,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     FileReader.h \
     FileWatcher.h
+
+win32:RC_ICONS += markdown.ico
+
+DISTFILES += \
+    ../README.md

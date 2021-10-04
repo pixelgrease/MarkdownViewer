@@ -61,8 +61,13 @@ void FileReader::load(const QString& filename)
     setFilename(filename);
     validateFilename(filename);
 
+    reload();
+}
+
+void FileReader::reload()
+{
     if (m_isValid) {
-        QFile f(filename);
+        QFile f(m_filename);
 
         if (f.open(QFile::ReadOnly | QFile::Text)) {
             QTextStream in(&f);

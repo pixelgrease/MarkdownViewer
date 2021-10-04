@@ -24,10 +24,12 @@
 */
 
 #include "FileReader.h"
+#include <QFileInfo>
 #include <QSignalSpy>
 #include <QtTest>
+#include <memory>
 
-// add necessary includes here
+using std::unique_ptr;
 
 class tst_FileReader : public QObject
 {
@@ -45,10 +47,12 @@ private slots:
     void isValid();
     void load_file();
     void reload_file();
+    void urlFromTemporaryFile();
 
 private:
     QDir makeInvalidDir();
     void makeTemporaryFile(QFile& file, const QString &filename);
+    unique_ptr<QUrl> toUrl(const QFile& file);
 
     QTemporaryDir m_tempDir;
     const QString defaultContent;
@@ -170,6 +174,21 @@ void tst_FileReader::reload_file()
     QCOMPARE(contentSpy.count(), 2);
     QVERIFY(contentSpy.first().isEmpty());
     QVERIFY(contentSpy[1].isEmpty());
+}
+
+void tst_FileReader::urlFromTemporaryFile()
+{
+    QFile file;
+    makeTemporaryFile(file, "testfile.md");
+
+    const auto url = QUrl::fromLocalFile(QFileInfo(file).absoluteFilePath());
+
+    QString s = url.toString();
+    QUrl testUrl(s);
+
+    QVERIFY(testUrl.isValid());
+    QVERIFY(testUrl.isLocalFile());
+    QVERIFY(QFile::exists(testUrl.toLocalFile()));
 }
 
 QTEST_MAIN(tst_FileReader)

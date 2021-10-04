@@ -46,6 +46,7 @@ signals:
 
 public slots:
     void load(const QString& filename);
+    void reload();
 
 private slots:
     void validateFilename(const QString& filename);
